@@ -13,9 +13,8 @@ pool:
 
 jobs: 
 - job: Job1
-
-steps:
-- script: echo Hello, world, changed!
+  steps:
+  - script: echo Hello, world, changed!
   displayName: 'Run a one-line script'
 
 - script: |
