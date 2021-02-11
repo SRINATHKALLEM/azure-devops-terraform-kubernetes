@@ -9,7 +9,7 @@ trigger:
 pool:
   vmImage: vs2017-win2016
 steps:
-- script: echo Hello, world!
+- script: echo Hello, world, changed!
   displayName: 'Run a one-line script'
 
 - script: |
