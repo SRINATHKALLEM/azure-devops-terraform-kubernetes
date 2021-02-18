@@ -1,18 +1,34 @@
 
 trigger:
 - main
-strategy:
-  matrix:
-    linux:
-      operatingSyastem: 'vs2017-win2016'
-    mac: 
-      operatingSyastem: '11.2.1' 
 
 pool:
-  vmImage: $(operatingSystem)
+  vmImage: vs2017-win2016
 
-steps:
-- script: echo Running on $(operatingSystem)
-  displayName: 'Run a one-line script'
+stages:
+- stage: Build
+  jobs:
+  - job: Buildjob
+    steps:
+    - bash: echo "Do the build"
+- stage: DevDeploy
+  jobs: 
+  - deployment: DevDeployJob
+    environment: Dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo deploy to Dev
+- stage: QADeploy
+  jobs: 
+  - deployment: QADeployJob
+    environment: QA
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo deploy to QA
+
 
 
