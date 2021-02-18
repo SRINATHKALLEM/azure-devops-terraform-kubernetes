@@ -1,0 +1,18 @@
+
+trigger:
+- main
+strategy:
+  matrix:
+    linux:
+      operatingSyastem: 'ubuntu-latest'
+    mac: 
+      operatingSyastem: 'macos-latest' 
+
+pool:
+  vmImage: $(operatingSystem)
+
+steps:
+- script: echo Running on $(operatingSystem)
+  displayName: 'Run a one-line script'
+
+
